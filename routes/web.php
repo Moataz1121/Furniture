@@ -21,6 +21,10 @@ Route::get('/home', function () {
    return Inertia::render('Welcome');
 });
 
+Route::get('/about', function () {
+   return Inertia::render('admin/Index');
+});
+
 // end
 
 Route::get('/dashboard', function () {
