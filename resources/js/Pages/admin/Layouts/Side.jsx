@@ -129,10 +129,10 @@ export default function Side() {
 
                 <li
                     className={`menu-item ${
-                        route().current("admin.index") ? "active" : ""
+                        route().current("admin.product.index") ? "active" : ""
                     }`}
                 >
-                    <a href={route("admin.index")} className="menu-link">
+                    <a href={route("admin.product.index")} className="menu-link">
                         <i className="menu-icon tf-icons bx bx-home-circle"></i>
                         <div data-i18n="Analytics">Products</div>
                     </a>
