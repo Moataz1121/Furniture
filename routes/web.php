@@ -31,6 +31,7 @@ Route::name('admin.')->group(function () {
 // Route::inertia('/admin', 'admin/Products/Index')->name('index');
 Route::resource('/category', CategoryController::class);
 Route::resource('/product', ProductController::class);
+Route::delete('/admin/product-images/{image}', [ProductController::class, 'deleteImage'])->name('product-images.destroy');
 });
 
 // end

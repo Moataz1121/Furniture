@@ -1,5 +1,6 @@
 import Master from "../Master";
 import { usePage } from "@inertiajs/react"; // لجلب البيانات القادمة من Laravel
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Welcome() {
     const { products } = usePage().props; // الحصول على البيانات المرسلة من Laravel
@@ -52,14 +53,44 @@ export default function Welcome() {
                                                 )}
                                             </td>
                                             <td>
-                                                <a href="" className="btn btn-primary">Edit</a>
-                                        <a href="" className="btn btn-danger mx-2">Delete</a>
-                                        <a href="" className="btn btn-info">Show</a>
+                                                <a
+                                                    href={route(
+                                                        "admin.product.edit",
+                                                        { product: product.id }
+                                                    )} // استخدام route مع تمرير معرف المنتج
+                                                    className="btn btn-primary"
+                                                >
+                                                    Edit
+                                                </a>
+                                                <a
+    href="#"
+    className="btn btn-danger mx-2"
+    onClick={(e) => {
+        e.preventDefault();
+        if (confirm("Are you sure you want to delete this product?")) {
+            Inertia.delete(route("admin.product.destroy", { product: product.id }), {
+                onSuccess: () => {
+                    console.log("Product deleted successfully.");
+                },
+            });
+        }
+    }}
+>
+    Delete
+</a>
 
-                                    </td>
+                                                <a
+                                                    href={route(
+                                                        "admin.product.show",
+                                                        { product: product.id }
+                                                    )}
+                                                    className="btn btn-info"
+                                                >
+                                                    Show
+                                                </a>
+                                            </td>
                                         </tr>
                                     ))}
-
                                 </tbody>
                             </table>
 

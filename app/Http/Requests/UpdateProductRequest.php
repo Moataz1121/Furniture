@@ -11,7 +11,7 @@ class UpdateProductRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,13 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             //
+            'name' => 'string|max:255',
+            'description' => 'nullable|string|max:255',
+            'category_id' => 'exists:categories,id',
+            'price' => 'numeric',
+            'quantity' => '',
+            'status' => '',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ];
     }
 }
