@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -23,6 +24,11 @@ Route::get('/home', function () {
 
 Route::get('/about', function () {
    return Inertia::render('admin/Index');
+})->name('index');
+
+Route::name('admin.')->group(function () {
+Route::inertia('/admin', 'admin/Products/Index')->name('index');
+Route::resource('/category', CategoryController::class);
 });
 
 // end
